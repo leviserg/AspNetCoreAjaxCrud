@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AspNetCoreAjaxModal.Models.TransactionModel>
+
+<table class="table table-responsive-sm">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BeneficiaryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionDateTime)
+            </th>
+            <th>
+                <button class="btn btn-info text-center btn-block" onclick="OpenModal('@Url.Action("AddOrEdit","Transaction",new { id = 0 },Context.Request.Scheme)', 'New Transaction')">
+                    <!--<i class="fa fa-calendar-plus-o mr-2"></i>Create New-->
+                    <i class="fa fa-credit-card mr-2"></i>Create New
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="py-0 my-0 text-small">
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeneficiaryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bank.BankName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionDateTime)
+                </td>
+                <td>
+                    <button class="btn btn-secondary px-2" style="width:49%" onclick="OpenModal('@Url.Action("AddOrEdit","Transaction", new { id = item.TransactionId }, Context.Request.Scheme)', 'Edit')">
+                        <i class="fa fa-pencil mr-2"></i>Edit
+                    </button>
+                    <form asp-action="Delete" asp-route-id="@item.TransactionId" onsubmit="return ajaxDelete(this);" class="d-inline">
+                        <input type="submit" class="btn btn-danger px-2" value="Delete" style="width:49%" />
+                    </form>
+                    <!--
+                        <button class="btn btn-danger px-2" style="width:49%" onclick="DeleteRequest(new { id = item.TransactionId })">
+                            <i class="fa fa-bitbucket mr-2"></i>Delete
+                        </button>
+                    -->
+                    <!--<a asp-action="AddOrEdit" asp-route-id="@item.TransactionId">Edit</a>-->
+                    <!--<a class="btn btn-danger px-2" style="width:48%" asp-action="Delete" asp-route-id="@item.TransactionId">Delete</a>-->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

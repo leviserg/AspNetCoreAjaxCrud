@@ -1,0 +1,31 @@
+﻿@model IEnumerable<AspNetCoreAjaxModal.Models.BankModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="py-4">Banks Page</h2>
+
+<table class="table table-responsive-sm">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BankName)
+            </th>
+            <th><a asp-action="Create" class="btn btn-info">Create New</a></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

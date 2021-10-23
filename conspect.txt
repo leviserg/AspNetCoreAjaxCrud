@@ -1,0 +1,33 @@
+1. Create ASP NET Core Web Application with higher version of .NET Core, MVC template
+2. Install from NuGet Package Manager 
+	- Microsoft.EntityFrameworkCore;
+	- Microsoft.EntityFrameworkCore.SqlServer;
+	- Microsoft.EntityFrameworkCore.Tools;
+ with version of .NET Core equal to selected before
+3. Go to Models FOlder in Project browser > Add > Class > Transaction{yourModelName}
+	(Code in project)
+4. Add Class to Models Folder TransactionDbContext{YourNameDbContext}:DbContext {inherited from DbContext class}
+	> add ctor {constructor} with single parameter
+        public TransactioDbContext(DbContextOptions<TransactioDbContext> options):base(options)
+        {
+
+        }
+	> add property DbSet<TransactioModel> Transactions { get; set; }
+5. Add created DbContext into Startup.cs class as a dependency injection:
+	inside ConfigureServices(...) method add
+		>   services.AddDbContext<TransactioDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+		> Inside apllicationsettings.json add item:
+		  "ConnectionStrings": {
+			"DevConnection": "Server=(local)\\SQLEXPRESS;Database=AspNetDb;Trusted_Connection=True;MultipleActiveResultSets=True;"
+		  }
+6. Open Package Manager Console and run
+	PM > Add-Migration "InitialCreate" / Drop database and then PM> Remove-Migration
+	PM > Update-Database
+7. Pick Controllers Folder > Add > Controller (with views using Entity Framework) > bind with TransactionModel using TransactioDbContext
+ >	Add logic to controller {see code example}
+8. Change default controller in Startup.cs E.G. "Home"->"Transaction"
+
+
+
+		
