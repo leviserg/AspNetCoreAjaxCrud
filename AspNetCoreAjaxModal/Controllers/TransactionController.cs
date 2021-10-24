@@ -105,7 +105,7 @@ namespace AspNetCoreAjaxModal.Controllers
             return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.Transactions.Include(t => t.Bank).ToList()) });
         }
 
-        // POST: Transaction/AddOrEdit/5
+        // POST: Transaction/ShowSearchResults/"SomeTextPatternForSearch"
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
