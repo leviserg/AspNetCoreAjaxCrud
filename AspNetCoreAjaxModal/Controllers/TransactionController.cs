@@ -105,6 +105,17 @@ namespace AspNetCoreAjaxModal.Controllers
             return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.Transactions.Include(t => t.Bank).ToList()) });
         }
 
+        // POST: Transaction/AddOrEdit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            var transactionsDbSearchContext = await _context.Transactions.Include(t => t.Bank).Where(j => j.BeneficiaryName.Contains(SearchPhrase)).ToListAsync();
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", transactionsDbSearchContext) });
+        }
+
         private bool TransactionModelExists(int id)
         {
             return _context.Transactions.Any(e => e.TransactionId == id);

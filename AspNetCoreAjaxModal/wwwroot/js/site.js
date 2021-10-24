@@ -38,7 +38,8 @@ $(function () {
         $("#loaderbody").css("display", "initial");
     }).bind('ajaxStop', function () {
         $("#loaderbody").css("display", "none");
-    });
+        });
+    $("#filtered").css("display", "none");
 });
 
 function OpenModal(url, title) {
@@ -72,6 +73,7 @@ function ajaxSave(form) {
             success: function (response) {
                 if (response.isValid) {
                     $("#view-all").html(response.html);
+                    $("#filtered").css("display", "initial");
                     $("#form-modal .modal-body").html('');
                     $("#form-modal .modal-title").html('');
                     $('#form-modal').modal("hide");
@@ -110,6 +112,7 @@ function ajaxDelete(form) {
                     processData: false,
                     success: function (response) {
                         $("#view-all").html(response.html);
+                        $("#filtered").css("display", "initial");
                         $.notify('deleted successfully', { globalPosition: 'top center', className: 'success', autoHideDelay: 1000 });
                     },
                     error: function (error) {
@@ -124,6 +127,27 @@ function ajaxDelete(form) {
     return false;
 }
 
+function ajaxSearch(form) {
+    try {
+        $.ajax({
+            type: 'POST',
+            url: form.action,
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#view-all").html(response.html);
+                $("#filtered").css("display", "initial");
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    } catch (e) {
+        console.log(e);
+    }
+    return false;
+}
 
 $(function () {
     /*
