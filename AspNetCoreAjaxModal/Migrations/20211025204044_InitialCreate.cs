@@ -27,12 +27,13 @@ namespace AspNetCoreAjaxModal.Migrations
                 {
                     TransactionId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AccountNumber = table.Column<string>(type: "nvarchar(12)", nullable: true),
-                    BeneficiaryName = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    AccountNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    BeneficiaryName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BankId = table.Column<int>(nullable: false),
-                    SwiftCode = table.Column<string>(type: "nvarchar(11)", nullable: true),
+                    SwiftCode = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     Amount = table.Column<int>(nullable: false),
-                    TransactionDateTime = table.Column<DateTime>(nullable: false)
+                    TransactionDateTime = table.Column<DateTime>(nullable: false),
+                    PhotoPath = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

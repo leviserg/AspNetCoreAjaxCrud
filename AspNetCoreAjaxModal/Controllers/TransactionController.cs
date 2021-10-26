@@ -6,16 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreAjaxModal.Models;
+using AspNetCoreAjaxModal.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace AspNetCoreAjaxModal.Controllers
 {
     public class TransactionController : Controller
     {
         private readonly TransactionsDbContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public TransactionController(TransactionsDbContext context)
+        public TransactionController(TransactionsDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Transaction
@@ -38,7 +43,10 @@ namespace AspNetCoreAjaxModal.Controllers
             if (id == 0)
             {
                 ViewData["BankId"] = new SelectList(_context.Banks, "Id", "BankName",1);
-                return View(new TransactionModel());
+                var transactionModel = new TransactionModel();
+                var transactionViewModel = new TransactionViewModel();
+                transactionViewModel.TransactionModel = transactionModel;
+                return View(transactionViewModel);
             }
             else
             {
@@ -48,7 +56,18 @@ namespace AspNetCoreAjaxModal.Controllers
                     return NotFound();
                 }
                 ViewData["BankId"] = new SelectList(_context.Banks, "Id", "BankName", transactionModel.BankId);
-                return View(transactionModel);
+
+                var transactionViewModel = new TransactionViewModel {
+                    TransactionId = transactionModel.TransactionId,
+                    AccountNumber = transactionModel.AccountNumber,
+                    BeneficiaryName = transactionModel.BeneficiaryName,
+                    BankId = transactionModel.BankId,
+                    Amount = transactionModel.Amount,
+                    SwiftCode = transactionModel.SwiftCode,
+                    TransactionDateTime = transactionModel.TransactionDateTime,
+                    TransactionModel = transactionModel
+                };
+                return View(transactionViewModel);
             }
         }
 
@@ -57,10 +76,37 @@ namespace AspNetCoreAjaxModal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind("TransactionId,AccountNumber,BeneficiaryName,BankId,SwiftCode,Amount,TransactionDateTime")] TransactionModel transactionModel)
+        public async Task<IActionResult> AddOrEdit(int id, [
+            Bind("TransactionId,AccountNumber,BeneficiaryName,BankId,SwiftCode,Amount,TransactionDateTime,Photo")
+            ] TransactionViewModel transactionViewModel)
         {
             if (ModelState.IsValid)
             {
+                string uniqueFileName = null;
+
+                if (transactionViewModel.Photo != null)
+                {
+                    string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + transactionViewModel.Photo.FileName;
+                    string uploadPath = Path.Combine(uploadFolder, uniqueFileName);
+                    //transactionViewModel.Photo.CopyTo(new FileStream(uploadPath, FileMode.Create));
+                    FileStream fs = new FileStream(uploadPath, FileMode.Create);
+                    transactionViewModel.Photo.CopyTo(fs);
+                    fs.Close();
+                }
+
+                var transactionModel = new TransactionModel
+                {
+                    TransactionId = transactionViewModel.TransactionId,
+                    AccountNumber = transactionViewModel.AccountNumber,
+                    BeneficiaryName = transactionViewModel.BeneficiaryName,
+                    BankId = transactionViewModel.BankId,
+                    Amount = transactionViewModel.Amount,
+                    SwiftCode = transactionViewModel.SwiftCode,
+                    TransactionDateTime = transactionViewModel.TransactionDateTime,
+                    PhotoPath = uniqueFileName
+                };
+
                 if (id == 0)
                 {
                     if (transactionModel.TransactionDateTime.ToString().Length == 0)
@@ -90,8 +136,8 @@ namespace AspNetCoreAjaxModal.Controllers
                 }
                 return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this,"_ViewAll",_context.Transactions.Include(t => t.Bank).ToList()) });
             }
-            ViewData["BankId"] = new SelectList(_context.Banks, "Id", "BankName", transactionModel.BankId);
-            return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEdit", transactionModel) });
+            ViewData["BankId"] = new SelectList(_context.Banks, "Id", "BankName", transactionViewModel.TransactionModel.BankId);
+            return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEdit", transactionViewModel) });
         }
 
         // POST: Transaction/Delete/5
@@ -100,6 +146,24 @@ namespace AspNetCoreAjaxModal.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var transactionModel = await _context.Transactions.FindAsync(id);
+
+            string fileName = transactionModel.PhotoPath;
+            if (fileName != null && fileName.Length > 0)
+            {
+                try
+                {
+                    string fileFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                    string filePath = Path.Combine(fileFolder, fileName);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+            }
             _context.Transactions.Remove(transactionModel);
             await _context.SaveChangesAsync();
             return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.Transactions.Include(t => t.Bank).ToList()) });
@@ -112,7 +176,7 @@ namespace AspNetCoreAjaxModal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
         {
-            var transactionsDbSearchContext = await _context.Transactions.Include(t => t.Bank).Where(j => j.BeneficiaryName.Contains(SearchPhrase)).ToListAsync();
+            var transactionsDbSearchContext = await _context.Transactions.Include(t => t.Bank).Where(j => j.BeneficiaryName.Contains(SearchPhrase) || j.Bank.BankName.Contains(SearchPhrase)).ToListAsync();
             return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", transactionsDbSearchContext) });
         }
 

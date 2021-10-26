@@ -16,5 +16,6 @@ namespace AspNetCoreAjaxModal.Models
         public DbSet<TransactionModel> Transactions { get; set; }
 
         public DbSet<BankModel> Banks { get; set; }
+
     }
 }

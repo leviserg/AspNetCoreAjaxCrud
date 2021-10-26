@@ -1,13 +1,17 @@
-﻿@model AspNetCoreAjaxModal.Models.TransactionModel
+﻿@*@model AspNetCoreAjaxModal.Models.TransactionModel*@
+
+@model AspNetCoreAjaxModal.ViewModels.TransactionViewModel
 
 @{
     ViewData["Title"] = "Edit";
     Layout = null;
+    var photoPath = "~/images/" + (Model.TransactionModel.PhotoPath ?? "noimage.png");
 }
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="AddOrEdit" asp-route-id="@Model.TransactionId" onsubmit="return ajaxSave(this);" autocomplete="off">
+        <form enctype="multipart/form-data" asp-action="AddOrEdit" asp-route-id="@Model.TransactionId"
+              onsubmit="return ajaxSave(this);" autocomplete="off">
             <!--<div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
             <input type="hidden" asp-for="TransactionId" />
             <div class="row">
@@ -67,14 +71,33 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                            <input asp-for="TransactionDateTime" class="form-control" type="text" id="dt_picker"/>
+                            <input asp-for="TransactionDateTime" class="form-control" type="text" id="dt_picker" />
                             <span asp-validation-for="TransactionDateTime" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="form-group row py-1">
+                <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-7">
+                    <div class="custom-file">
+                        <input asp-for="Photo" class="form-control custom-file-input" onchange="ShowFileNameInInput(this)" />
+                        <label class="custom-file-label text-black-50">Choose File...</label>
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img src="@photoPath"
+                             class="border border-secondary img-thumbnail rounded mx-auto d-block" 
+                             style="width:60px;height:60px" alt="..."
+                             asp-append-version="true">
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group pt-2">
-                <input type="submit" value="Save" class="btn btn-info btn-block"/>
+                <input type="submit" value="Save" class="btn btn-info btn-block" />
             </div>
         </form>
     </div>

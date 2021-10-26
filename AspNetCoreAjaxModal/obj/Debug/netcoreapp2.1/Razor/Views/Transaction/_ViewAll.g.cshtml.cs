@@ -61,7 +61,7 @@ using AspNetCoreAjaxModal.Models;
             WriteLiteral("    <div class=\"row pb-2 mb-2\">\r\n        ");
             EndContext();
             BeginContext(106, 621, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1c12165119349cab4b054c3ac76c70a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0deccfea63034325af1ad7fa4cbb725b", async() => {
                 BeginContext(230, 490, true);
                 WriteLiteral(@"
             <div class=""form-group"">
@@ -222,7 +222,7 @@ WriteAttributeValue("", 2512, Url.Action("AddOrEdit","Transaction", new { id = i
             WriteLiteral(">\r\n                            <i class=\"fa fa-pencil mr-2\"></i>Edit\r\n                        </button>\r\n                        ");
             EndContext();
             BeginContext(2747, 261, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "079c3c8282a144009d0b584846550782", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "137b65fd1fe64da891b9fd1fc6f55d20", async() => {
                 BeginContext(2861, 140, true);
                 WriteLiteral("\r\n                            <input type=\"submit\" class=\"btn btn-danger px-2\" value=\"Delete\" style=\"width:49%\" />\r\n                        ");
                 EndContext();

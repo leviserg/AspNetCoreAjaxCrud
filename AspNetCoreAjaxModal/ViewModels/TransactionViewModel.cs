@@ -1,4 +1,5 @@
-﻿using AspNetCoreAjaxModal.ViewModels;
+﻿using AspNetCoreAjaxModal.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,11 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspNetCoreAjaxModal.Models
+namespace AspNetCoreAjaxModal.ViewModels
 {
-    public class TransactionModel
+    public class TransactionViewModel
     {
-        [Key]
         public int TransactionId { get; set; }
 
         [MaxLength(12)]
@@ -40,10 +40,18 @@ namespace AspNetCoreAjaxModal.Models
         [Display(Name = "Transaction Date")]
         public DateTime TransactionDateTime { get; set; } = DateTime.Now;
 
-        [Display(Name = "Bank")]
-        public virtual BankModel Bank { get; set; }
+        [NotMappedAttribute]
+        public IFormFile Photo { get; set; }
 
-        public string PhotoPath { get; set; }
-                
+        public virtual TransactionModel TransactionModel { get; set; }
+
+        /*
+        public TransactionViewModel(TransactionModel transactionModel)
+        {
+            TransactionModel = transactionModel;
+        }
+        */
+
+
     }
 }

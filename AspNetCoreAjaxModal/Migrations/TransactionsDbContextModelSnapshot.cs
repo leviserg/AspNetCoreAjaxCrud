@@ -39,17 +39,25 @@ namespace AspNetCoreAjaxModal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AccountNumber")
-                        .HasColumnType("nvarchar(12)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
 
                     b.Property<int>("Amount");
 
                     b.Property<int>("BankId");
 
                     b.Property<string>("BeneficiaryName")
-                        .HasColumnType("nvarchar(100)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("PhotoPath");
 
                     b.Property<string>("SwiftCode")
-                        .HasColumnType("nvarchar(11)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(11)")
+                        .HasMaxLength(11);
 
                     b.Property<DateTime>("TransactionDateTime");
 

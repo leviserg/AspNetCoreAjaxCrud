@@ -30,6 +30,12 @@ $(document).ready(function () {
             $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
         }, 0);
     });
+    /*
+    $('.custom-file-input').on("change", function () {
+        let fileName = $(this).val().split("\\").pop();
+        $(this).next('.custom-file-label').html(fileName);
+    });
+    */
 });
 
 $(function () {
@@ -147,6 +153,11 @@ function ajaxSearch(form) {
         console.log(e);
     }
     return false;
+}
+
+function ShowFileNameInInput(elem) {
+    let fileName = $(elem).val().split("\\").pop();
+    $(elem).next('.custom-file-label').html(fileName);
 }
 
 $(function () {
