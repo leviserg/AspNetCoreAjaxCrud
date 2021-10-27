@@ -68,27 +68,11 @@ namespace AspNetCoreAjaxModalTest
         }
 
         [Fact]
-        public void TestStaticValidArguments()
-        {
-            var transaction = new Mock<ICreateTransactionProcessor>();
-            var addOrEditProcessor = new AddOrEditProcessor(transaction.Object);
-            Assert.True(addOrEditProcessor.AddRecord(
-                new TransactionModel
-                {
-                    TransactionDateTime = DateTime.Today.AddDays(-2),
-                    BankId = 2,
-                    AccountNumber = "FT1223434",
-                    BeneficiaryName = "Frank Thomson",
-                    SwiftCode = "RT258456QA"
-                }));
-        }
-
-        [Fact]
         public void TestMockValidArguments()
         {
             var transaction = new Mock<ICreateTransactionProcessor>();
            
-            var transactionModel = new TransactionModel
+            var transactionModel = new TransactionModel // var 1
             {
                 TransactionDateTime = DateTime.Today.AddDays(-2),
                 BankId = 2,
@@ -96,8 +80,10 @@ namespace AspNetCoreAjaxModalTest
                 BeneficiaryName = "Frank Thomson",
                 SwiftCode = "RT258456QA"
             };
-            //transaction.Setup(p => p.Create(It.IsAny<TransactionModel>())).Returns(true); // var 1
+
+            //transaction.Setup(p => p.Create(It.IsAny<TransactionModel>())).Returns(true); // var 2
             transaction.Setup(p => p.Create(transactionModel)).Returns(true);
+
             var addOrEditProcessor = new AddOrEditProcessor(transaction.Object);
             
             Assert.True(addOrEditProcessor.AddRecord(
