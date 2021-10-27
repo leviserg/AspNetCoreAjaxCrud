@@ -1,0 +1,150 @@
+Once your server has been created you will receive an email from us. Here are the instructions on how to connect to your server once it is created:
+
+Download a program like PuTTY
+On the PuTTY configuration fill in the IP address of the server as hostname
+Select connection type "SSH"
+Click on "open"
+If it is the first time you connect to the server you will get a security prompt. Click "yes"
+Fill in your username: root
+You will be asked to fill in your server password. Please do so.
+You should then be connected to your server
+The IP address and password of your server can be found by clicking on manage next to your server. This can be done after the server is created by us.
+
+asp.leviserg.net : 185.227.111.180
+
+===============
+
+dockerID registration
+dockerId: 	levisergdocker
+email:		sergey.levitskiy.sl@gmail.com
+pwd:		eRtihMhd6Va3W8Y
+
+===============
+
+
+rm .ssh/known_hosts - удалить предыдущие ssh подключения
+ssh -l root 77.73.68.150 - подключиться к VPS
+
+sudo apt update && sudo apt upgrade - установка обновлений ОС
+sudo apt install linux-image-extra-$(uname -r) linux-image-extra-virtual - установка дополнительных пакетов ядра
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D - добавление ключа репозитория разработчиков Docker
+sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' - добавление репозитория разработчиков docker
+sudo apt update && apt-cache policy docker-engine - обновили списки покетов
+sudo apt install -y docker-engine - установка Docker
+sudo usermod -aG docker $(whoami) - добавление пользователя в группу docker
+sudo systemctl status docker - проверка статуса сервиса docker
+
+sudo iptables -L - проверка открытых портов
+
+установка нужных портов
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A OUTPUT -o lo -j ACCEPT 
+sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+ 
+docker run -d -p 80:80/tcp {yourName/yourContainerName on DockerHub e.g. shwanoff/helloworldcore}
+docker ps
+
+
+
+
+
+===============
+
+install ftp server
+sudo apt update
+sudo apt install vsftpd
+sudo systemctl start vsftpd
+sudo systemctl enable vsftpd
+== open ports for ftp
+sudo ufw allow 20/tcp
+sudo ufw allow 21/tcp
+sudo ufw status
+==
+sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig  -- copy config file
+sudo vi /etc/vsftpd.conf 						-- open file in Vim editor
+
+	anonymous_enable = NO
+	local_enable = YES
+	write_enable = YES
+	local_umask = 022
+	dirmessage_enable = YES
+	xferlog_enable = YES
+	xferlog_std_format=YES
+	connect_from_port_20 = YES
+	listen=YES
+	pam_service_name=vsftpd
+	userlist_enable = YES
+	userlist_file=/etc/vsftpd.userlist
+	userlist_deny=NO
+	chroot_local_user = YES
+	allow_writeable_chroot = YES
+	
+	:wq or :x {Ctrl + O} - Save changes w-write q-quit
+	
+sudo systemctl restart vsftpd
+
+== set user for ftp
+sudo useradd -m -c "Admin User" -s /bin/bash leviserg
+sudo passwd leviserg
+echo "leviserg" | sudo tee -a /etc/vsftpd.userlist	-- add ftp user to list
+cat /etc/vsftpd.userlist							-- check list
+== check connect to ftp
+ftp localhost
+> Name : anonymous
+> Password : {empty}
+== should refuse
+> Name : anonymous
+> Password : {empty}
+
+== set folder for ftp user
+
+sudo mkdir -p /home/testuser/ftp/files
+sudo chown nobody:nogroup /home/testuser/ftp
+sudo chmod a-w /home/testuser/ftp
+sudo chown -R testuser:testuser /home/testuser/ftp/files
+sudo chmod -R 0770 /home/testuser/ftp/files/
+
+sudo vi /etc/vsftpd.conf 						-- open file in Vim editor
+
+	# allow_writeable_chroot = YES				-- comment raw
+	
+	user_sub_token = $USER						-- add follow
+	local_root=/home/$USER/ftp
+
+	Save changes
+	
+sudo systemctl restart vsftpd
+
+======= enable secure connection
+
+sudo mkdir /etc/ssl/private
+sudo openssl req -x509 -nodes -days 720 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/private/vsftpd.pem
+sudo ufw allow 990/tcp
+sudo ufw allow 40000:50000/tcp
+sudo ufw status
+
+sudo vi /etc/vsftpd.conf 						-- open file in Vim editor
+
+	ssl_enable=YES
+	ssl_tlsv1=YES
+	ssl_sslv2=NO
+	ssl_sslv3=NO
+	
+	rsa_cert_file=/etc/ssl/private/vsftpd.pem			-- should be uncommented
+	rsa_private_key_file=/etc/ssl/private/vsftpd.key
+	
+	allow_anon_ssl=NO
+	force_local_data_ssl=YES
+	force_local_logins_ssl=YES
+	
+	ssl_ciphers=HIGH 							-- encryption level
+	pasv_min_port=40000							-- data transfer ports range
+	pasv_max_port=50000
+	
+	Save changes :wq
+	
+sudo systemctl restart vsftpd
+
+== test from filezilla
