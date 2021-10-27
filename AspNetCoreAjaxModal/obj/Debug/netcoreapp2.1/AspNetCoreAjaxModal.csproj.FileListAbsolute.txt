@@ -39,4 +39,3 @@ D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Debug\netc
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Debug\netcoreapp2.1\Razor\Views\Bank\Index.g.cshtml.cs
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Debug\netcoreapp2.1\Razor\Views\Transaction\AddOrEdit.g.cshtml.cs
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Debug\netcoreapp2.1\Razor\Views\Transaction\_ViewAll.g.cshtml.cs
-D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Debug\netcoreapp2.1\AspNetCoreAjaxModal.csprojAssemblyReference.cache
