@@ -1,0 +1,241 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalTest\\AspNetCoreAjaxModalTest.csproj": {}
+  },
+  "projects": {
+    "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalBusinessLogicLayer\\AspNetCoreAjaxModalBusinessLogicLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalBusinessLogicLayer\\AspNetCoreAjaxModalBusinessLogicLayer.csproj",
+        "projectName": "AspNetCoreAjaxModalBusinessLogicLayer",
+        "projectPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalBusinessLogicLayer\\AspNetCoreAjaxModalBusinessLogicLayer.csproj",
+        "packagesPath": "C:\\Users\\Serhii_Levytskyi1\\.nuget\\packages\\",
+        "outputPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalBusinessLogicLayer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Serhii_Levytskyi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal.csproj": {
+                "projectPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalTest\\AspNetCoreAjaxModalTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalTest\\AspNetCoreAjaxModalTest.csproj",
+        "projectName": "AspNetCoreAjaxModalTest",
+        "projectPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalTest\\AspNetCoreAjaxModalTest.csproj",
+        "packagesPath": "C:\\Users\\Serhii_Levytskyi1\\.nuget\\packages\\",
+        "outputPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalTest\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Serhii_Levytskyi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalBusinessLogicLayer\\AspNetCoreAjaxModalBusinessLogicLayer.csproj": {
+                "projectPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModalBusinessLogicLayer\\AspNetCoreAjaxModalBusinessLogicLayer.csproj"
+              },
+              "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal.csproj": {
+                "projectPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[15.9.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal.csproj",
+        "projectName": "AspNetCoreAjaxModal",
+        "projectPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal.csproj",
+        "packagesPath": "C:\\Users\\Serhii_Levytskyi1\\.nuget\\packages\\",
+        "outputPath": "D:\\SergeyDocs\\csharp_prjs\\AspNetCoreAjaxModal\\AspNetCoreAjaxModal\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Serhii_Levytskyi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.1.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.1.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.14, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.4.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.1.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

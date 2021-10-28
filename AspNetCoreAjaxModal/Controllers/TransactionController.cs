@@ -15,9 +15,9 @@ namespace AspNetCoreAjaxModal.Controllers
     public class TransactionController : Controller
     {
         private readonly TransactionsDbContext _context;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public TransactionController(TransactionsDbContext context, IHostingEnvironment hostingEnvironment)
+        public TransactionController(TransactionsDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _context = context;
             _hostingEnvironment = hostingEnvironment;

@@ -29,5 +29,21 @@
 8. Change default controller in Startup.cs E.G. "Home"->"Transaction"
 
 
+Severity	Code	Description	Project	File	Line	Suppression State
+Error		The project D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal must provide a value for Configuration.	AspNetCoreAjaxModal	C:\Program Files\dotnet\sdk\5.0.402\Sdks\Microsoft.NET.Sdk.Razor\build\netstandard2.0\Microsoft.NET.Sdk.Razor.CodeGeneration.targets	97
+
+System.InvalidOperationException
+  HResult=0x80131509
+  Message=Endpoint Routing does not support 'IApplicationBuilder.UseMvc(...)'. To use 'IApplicationBuilder.UseMvc' set 'MvcOptions.EnableEndpointRouting = false' inside 'ConfigureServices(...).
+  Source=Microsoft.AspNetCore.Mvc.Core
+  StackTrace:
+   at Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc(IApplicationBuilder app, Action`1 configureRoutes)
+   at AspNetCoreAjaxModal.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env) in D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\Startup.cs:line 57
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.<>c__DisplayClass4_0.<Build>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+	
 
 		

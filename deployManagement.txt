@@ -15,12 +15,13 @@ asp.leviserg.net : 185.227.111.180
 ===============
 
 dockerID registration
-dockerId: 	levisergdocker
+dockerId: 	leviserg
 email:		sergey.levitskiy.sl@gmail.com
-pwd:		eRtihMhd6Va3W8Y
+pwd:		UM-48cAs
 
 ===============
 
+===============
 
 rm .ssh/known_hosts - удалить предыдущие ssh подключения
 ssh -l root 77.73.68.150 - подключиться к VPS
