@@ -161,3 +161,6 @@ D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Release\ne
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Release\netcoreapp3.1\AspNetCoreAjaxModal.dll
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Release\netcoreapp3.1\AspNetCoreAjaxModal.pdb
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Release\netcoreapp3.1\AspNetCoreAjaxModal.genruntimeconfig.cache
+D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\bin\Release\netcoreapp3.1\MySqlConnector.dll
+D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\bin\Release\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
+D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\bin\Release\netcoreapp3.1\Pomelo.JsonObject.dll

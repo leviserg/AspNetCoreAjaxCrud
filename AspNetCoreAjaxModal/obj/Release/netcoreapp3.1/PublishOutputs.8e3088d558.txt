@@ -119,8 +119,11 @@ D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\pub
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\MySqlConnector.dll
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\Newtonsoft.Json.dll
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\NuGet.Frameworks.dll
+D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\Pomelo.EntityFrameworkCore.MySql.dll
+D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\Pomelo.JsonObject.dll
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\System.Collections.Immutable.dll
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\System.Composition.AttributedModel.dll
 D:\SergeyDocs\csharp_prjs\AspNetCoreAjaxModal\AspNetCoreAjaxModal\obj\Docker\publish\System.Composition.Convention.dll

@@ -26,3 +26,14 @@ SELECT a.TransactionId,
 	a.PhotoPath
 FROM [dbo].[Transactions] a
 INNER JOIN [dbo].[Banks] b ON a.BankId = b.Id
+-- == mysql == --
+SELECT a.TransactionId,
+	a.AccountNumber,
+	a.BeneficiaryName,
+	b.BankName,
+	a.SwiftCode,
+	a.Amount,
+	a.TransactionDateTime,
+	a.PhotoPath
+FROM Transactions a
+INNER JOIN Banks b ON a.BankId = b.Id
