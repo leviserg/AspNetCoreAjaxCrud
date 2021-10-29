@@ -29,11 +29,34 @@ rm .ssh/known_hosts - удалить предыдущие ssh подключен
 ssh -l root 77.73.68.150 - подключиться к VPS
 
 sudo apt update && sudo apt upgrade - установка обновлений ОС
-sudo apt install linux-image-extra-$(uname -r) linux-image-extra-virtual - установка дополнительных пакетов ядра
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D - добавление ключа репозитория разработчиков Docker
-sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' - добавление репозитория разработчиков docker
-sudo apt update && apt-cache policy docker-engine - обновили списки покетов
-sudo apt install -y docker-engine - установка Docker
+{
+	*** deprecated ***
+	sudo apt install linux-image-extra-$(uname -r) linux-image-extra-virtual - установка дополнительных пакетов ядра
+	sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D - добавление ключа репозитория разработчиков Docker
+	sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' - добавление репозитория разработчиков docker
+	sudo apt update && apt-cache policy docker-engine - обновили списки покетов
+	sudo apt install -y docker-engine - установка Docker
+}
+
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+
+sudo apt-get install \
+ca-certificates \
+curl \
+gnupg \
+lsb-release
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
 sudo usermod -aG docker $(whoami) - добавление пользователя в группу docker
 sudo systemctl status docker - проверка статуса сервиса docker
 
@@ -45,8 +68,10 @@ sudo iptables -A OUTPUT -o lo -j ACCEPT
 sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
- 
-docker run -d -p 80:80/tcp {yourName/yourContainerName on DockerHub e.g. shwanoff/helloworldcore}
+
+docker login
+...
+docker run -d -p 80:80/tcp leviserg/aspnetcoreajaxmodal {yourName/yourContainerName on DockerHub e.g. shwanoff/helloworldcore}
 docker ps
 
 ===============
@@ -58,8 +83,11 @@ install SQLEXpress
 > sudo apt-get update
 > sudo apt-get install -y mssql-server
 > sudo /opt/mssql/bin/mssql-conf setup
+	{entered password for sa user 1qAz2wSx_ }
 > systemctl status mssql-server --no-pager
 
+
+> sudo systemctl stop mssql-server {require min 2GB of memory}
 { you should open port 1433 on firewall after installation }
 
 ---- install CLI tools for SQL Server ----
@@ -76,7 +104,7 @@ echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 source ~/.bashrc
 
-sqlcmd -S localhost -U SA -P '<YourPassword>'
+sqlcmd -S localhost -U SA -P !Aaa111274pohtefdg '<YourPassword>'
 >1 CREATE DATABASE TestDB....
 
 
